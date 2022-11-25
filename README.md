@@ -2,7 +2,7 @@
 ## Prerequisites
 * [Docker](https://docs.docker.com/get-docker/)
 
-For the RandomFields GUI `RFgui`, you need to enable X11 forwarding, as the GUI is provided as a tcl/tk window. A guide for macOS can be found below.
+For the RandomFields GUI `RFgui`, you need to enable X11 forwarding, as the GUI is provided as a Tcl/Tk window. A guide for macOS can be found below.
 
 ## Use
 The docker container can be built as usual through
@@ -30,11 +30,22 @@ and the `httpgd` server is initialized in R through
 httpgd::hgd(host = "0.0.0.0", port = 8000)
 ```
 
-Now the plot server should be available to the host at localhost:8000 and be tested through `plot(RMexp())` for instance.
+Now the plot server should be available to the host at localhost:8000 and be tested through `plot(RMexp())`, for instance.
 
 #### RandomFields GUI 
 
-RandomFields has a built-in GUI. Unfortunately, its compatibility with modern operating systems is quite unstable and the corresponding functions have been deprecated. If you rely on the GUI and run into errors, please contact the maintainer of RandomFields.  
+RandomFields has a built-in GUI. Unfortunately, its compatibility with modern operating systems is quite **unstable** and the corresponding functions have been deprecated. If you rely on the GUI and run into errors, please contact the maintainer of RandomFields.  
+
+The GUI builds on [Tcl/Tk](https://www.tcl.tk/) and to use it as part of a container you need to forward the container's X11 output. Since this involves interaction with the host, the set-up instructions for this are platform-dependent:
+* **Windows**: A guide how to do this on windows can be found [here](https://dev.to/darksmile92/run-gui-app-in-linux-docker-container-on-windows-host-4kde).
+* **macOS**: Instructions for macOS can be found [here](https://gist.github.com/sorny/969fe55d85c9b0035b0109a31cbcb088).
+* **Linux**: Instructions depend on the distribution, window manager, etc.  
+
+In addition to the `docker run` arguments in the respective documents, you also need to mount the X11 socket. On Unix-like operating systems, this is achieved through the flag `-v /tmp/.X11-unix:/tmp.X11-unix:ro`. A full run instruction on macOS might look like this:
+
+```
+docker run -it -e DISPLAY=$ip:0 -u docker -v /tmp/.X11-unix:/tmp.X11-unix:ro --platform linux/amd64 RandomFieldsDocker
+```
 
 
 ## Credits
