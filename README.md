@@ -1,8 +1,13 @@
 # RandomFieldsDocker
+### Docker container for R package RandomFields
+**RandomFields** is an R package maintained by **[Martin Schlather](https://www.wim.uni-mannheim.de/schlather/)** which allows the estimation, prediction and simulation of random fields. Unfortunately, [it has been archived on CRAN](https://cran.r-project.org/web/packages/RandomFields/index.html) as check problems couldn't be corrected. The R extension 'RandomFieldsUtils' packages auxiliary algebraic routines and is used in many functions in RandomFields.
+
+Due to changes in CRAN requirements there has been a cascade of adjustments to RandomFields and RandomFieldsUtils over the last years, which have added bugs on some operating systems. This repository **contains files for building a docker container in which RandomFields can be used**. If you run into errors, please contact the maintainer of RandomFields, as there are currently (November 2022) no plans to ship a new version of RandomFields to CRAN.
+
 ## Prerequisites
 * [Docker](https://docs.docker.com/get-docker/)
 
-For the RandomFields GUI `RFgui`, you need to enable X11 forwarding, as the GUI is provided as a Tcl/Tk window. A guide for macOS can be found below.
+For the RandomFields GUI `RFgui`, you need to enable X11 forwarding, as the GUI is provided as a Tcl/Tk window. This adds further preparatory steps, which are detailed [below](randomfields-gui).
 
 ## Use
 The docker container can be built as usual through
