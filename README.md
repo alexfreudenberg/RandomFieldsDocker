@@ -1,13 +1,14 @@
 # RandomFieldsDocker
-### Docker container for R package RandomFields
+Docker container for R package RandomFields
+## Overview
 **RandomFields** is an R package maintained by **[Martin Schlather](https://www.wim.uni-mannheim.de/schlather/)** which allows the estimation, prediction and simulation of random fields. Unfortunately, [it has been archived on CRAN](https://cran.r-project.org/web/packages/RandomFields/index.html) as check problems couldn't be corrected. The R extension 'RandomFieldsUtils' packages auxiliary algebraic routines and is used in many functions in RandomFields.
 
-Due to changes in CRAN requirements there has been a cascade of adjustments to RandomFields and RandomFieldsUtils over the last years, which have added bugs on some operating systems. This repository **contains files for building a docker container in which RandomFields can be used**. If you run into errors, please contact the maintainer of RandomFields, as there are currently (November 2022) no plans to ship a new version of RandomFields to CRAN.
+Due to changes in CRAN requirements there has been a cascade of adjustments to RandomFields and RandomFieldsUtils over the last years, which have added bugs on some operating systems. This repository **contains files for building a docker container in which RandomFields can be used**. If you run into errors, please contact the maintainer of RandomFields, as there are currently (Nov 2022) no plans to ship a new version of RandomFields to CRAN.
 
 ## Prerequisites
 * [Docker](https://docs.docker.com/get-docker/)
 
-For the RandomFields GUI `RFgui`, you need to enable X11 forwarding, as the GUI is provided as a Tcl/Tk window. This adds further preparatory steps, which are detailed [below](randomfields-gui).
+For the RandomFields GUI `RFgui`, you need to enable X11 forwarding, as the GUI is served as a Tcl/Tk window. This adds further preparatory steps, which are detailed [below](#randomfields-gui).
 
 ## Use
 The docker container can be built as usual through
@@ -21,7 +22,7 @@ Afterwards, the container is launched
 docker run -it -u docker --name="RandomFieldsDocker" --platform linux/amd64 RandomFieldsDocker
 ```
 
-#### Plots
+### Plots
 
 If you're interested in plots, [the easiest solution](https://rocker-project.org/use/gui.html) is to use the `httpgd` package, which is part of the docker image and provides plots through a http server. In this case, the container is launched through
 
@@ -37,7 +38,7 @@ httpgd::hgd(host = "0.0.0.0", port = 8000)
 
 Now the plot server should be available to the host at localhost:8000 and be tested through `plot(RMexp())`, for instance.
 
-#### RandomFields GUI 
+### RandomFields GUI 
 
 RandomFields has a built-in GUI. Unfortunately, its compatibility with modern operating systems is quite **unstable** and the corresponding functions have been deprecated. If you rely on the GUI and run into errors, please contact the maintainer of RandomFields.  
 

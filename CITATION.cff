@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Schlather"
+  given-names: "Martin"
+- family-names: "Malinowski"
+  given-names: "Alexander"
+- family-names: "Menck"
+  given-names: "Peter"
+- family-names: "Oesting"
+  given-names: "Marco"
+- family-names: "Strokorb"
+  given-names: "Kirstin"
+title: "Analysis, Simulation and Prediction of Multivariate Random Fields with Package RandomFields"
+date-released: 2015-02-10
+doi: 10.18637/jss.v063.i08
