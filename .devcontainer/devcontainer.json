@@ -1,7 +1,7 @@
 {
   "name": "RandomFieldsDocker",
   "build": {
-    "dockerfile": "Dockerfile",
+    "dockerfile": "../Dockerfile",
     "context": "..",
     "args": { 
     }
