@@ -16,12 +16,12 @@ ENV HOME /home/docker
 
 # Necessary packages for tcl/tk
 # These can be omitted if there is no interest in using the RandomFields GUI
-RUN if [[ -z "$GUI" ]] ; then apt update && apt-get install -y libsm6 libxrender1 libfontconfig1 libxtst6 libxt-dev libxt6 xorg tk tk-dev tcl-dev ; fi
-RUN if [[ -z "$GUI" ]] ; then install2.r -n 4 tkrplot RColorBrewer colorspace ; fi
+RUN if [[ "x$GUI" != "x" ]] ; then apt update && apt-get install -y libsm6 libxrender1 libfontconfig1 libxtst6 libxt-dev libxt6 xorg tk tk-dev tcl-dev ; fi
+RUN if [[ "x$GUI" != "x" ]] ; then install2.r -n 4 tkrplot RColorBrewer colorspace ; fi
 
 # Check if running on Codespaces and install languageserver
-RUN if [[ -z "$_DEV_CONTAINERS_BASE_IMAGE" ]] ; then apt update && apt-get install -y libxml2-dev ; fi
-RUN if [[ -z "$_DEV_CONTAINERS_BASE_IMAGE" ]] ; then install2.r -d TRUE httpgd languageserver ; fi
+RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then apt update && apt-get install -y libxml2-dev ; fi
+RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then install2.r -d TRUE httpgd languageserver ; fi
 
 # Set CRAN repository
 RUN echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >>"${R_HOME}/etc/Rprofile.site"
