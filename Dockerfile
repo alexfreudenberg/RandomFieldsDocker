@@ -20,7 +20,7 @@ RUN if [[ -z "$GUI" ]] ; then apt update && apt-get install -y libsm6 libxrender
 RUN if [[ -z "$GUI" ]] ; then install2.r -n 4 tkrplot RColorBrewer colorspace ; fi
 
 # Check if running on Codespaces and install languageserver
-RUN if [[ -z "$_DEV_CONTAINERS_BASE_IMAGE" ]] ; then apt update && apt-get install -y libxml2-dev libxt-dev libxt6 ; fi
+RUN if [[ -z "$_DEV_CONTAINERS_BASE_IMAGE" ]] ; then apt update && apt-get install -y libxml2-dev ; fi
 RUN if [[ -z "$_DEV_CONTAINERS_BASE_IMAGE" ]] ; then install2.r -d TRUE httpgd languageserver ; fi
 
 # Set CRAN repository
