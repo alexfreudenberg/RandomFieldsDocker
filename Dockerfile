@@ -25,7 +25,7 @@ RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then install2.r -d TRUE htt
 
 # Set CRAN repository
 RUN echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >>"${R_HOME}/etc/Rprofile.site"
-RUN echo 'library(RandomFields); RFoptions(install="no",always_open_device=F);' >>"${R_HOME}/etc/Rprofile.site"
+
 # Copy precompiled packages and set working directory
 COPY ./build /usr/local/src/
 WORKDIR /usr/local/src/
