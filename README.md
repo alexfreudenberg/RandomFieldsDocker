@@ -1,9 +1,12 @@
 # RandomFieldsDocker
-Docker container for R package RandomFields
-## Overview
-**RandomFields** is an R package maintained by **[Martin Schlather](https://www.wim.uni-mannheim.de/schlather/)** which allows the estimation, prediction and simulation of random fields. Unfortunately, [it has been archived on CRAN](https://cran.r-project.org/web/packages/RandomFields/index.html) as check problems couldn't be corrected. The R extension 'RandomFieldsUtils' packages auxiliary algebraic routines and is used in many functions in RandomFields.
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=dev_codespace&repo=570134693)  
 
-Due to changes in CRAN requirements there has been a cascade of adjustments to RandomFields and RandomFieldsUtils over the last years, which have added bugs on some operating systems. This repository **contains files for building a docker container in which RandomFields can be used**. If you run into errors, please contact the maintainer of RandomFields, as there are currently (Nov 2022) no plans to ship a new version of RandomFields to CRAN.
+Docker container for R package RandomFields
+
+## Overview
+**RandomFields** was an R package maintained by **[Martin Schlather](https://www.wim.uni-mannheim.de/schlather/)** which allows the estimation, prediction and simulation of random fields. The R extension 'RandomFieldsUtils' packages auxiliary algebraic routines and is used in many functions in RandomFields.
+
+Due to changes in CRAN requirements there has been a cascade of adjustments to RandomFields and RandomFieldsUtils over the last years, which have added bugs on some operating systems. This repository **contains files for building a docker container in which RandomFields can be used**. If you run into errors, please contact Martin Schlather, the maintainer of RandomFields.
 
 ## Prerequisites
 * [Docker](https://docs.docker.com/get-docker/)
@@ -14,12 +17,12 @@ For the RandomFields GUI `RFgui`, you need to enable X11 forwarding, as the GUI 
 The docker container can be built as usual through
 
 ```Shell
-docker build -t RandomFieldsDocker .
+docker build -t randomfieldsdocker .
 ```
 
 Afterwards, the container is launched
 ```Shell
-docker run -it -u docker --name="RandomFieldsDocker" --platform linux/amd64 RandomFieldsDocker
+docker run -it -u docker --name="RandomFieldsDocker" --platform linux/amd64 randomfieldsdocker
 ```
 
 ### Plots
@@ -27,7 +30,7 @@ docker run -it -u docker --name="RandomFieldsDocker" --platform linux/amd64 Rand
 If you're interested in plots, [the easiest solution](https://rocker-project.org/use/gui.html) is to use the `httpgd` package, which is part of the docker image and provides plots through a http server. In this case, the container is launched through
 
 ```Shell
-docker run -it -u docker --name="RandomFieldsDocker" -p 8000:8000 --platform linux/amd64 RandomFieldsDocker
+docker run -it -u docker --name="RandomFieldsDocker" -p 8000:8000 --platform linux/amd64 randomfieldsdocker
 ```
 
 and the `httpgd` server is initialized in R through
@@ -36,7 +39,7 @@ and the `httpgd` server is initialized in R through
 httpgd::hgd(host = "0.0.0.0", port = 8000)
 ```
 
-Now the plot server should be available to the host at localhost:8000 and be tested through `plot(RMexp())`, for instance.
+Now the plot server should be available to the host at localhost:8000 and can be tested through `plot(RMexp())`, for instance.
 
 ### RandomFields GUI 
 
@@ -58,3 +61,4 @@ docker run -it -e DISPLAY=$ip:0 -u docker -v /tmp/.X11-unix:/tmp.X11-unix:ro --p
 This docker image builds on 
 * [Rocker](https://rocker-project.org/)
 * the guide [X11 forwarding on macOS and docker](https://gist.github.com/sorny/969fe55d85c9b0035b0109a31cbcb088)
+* https://stackoverflow.com/q/25281992/20461152

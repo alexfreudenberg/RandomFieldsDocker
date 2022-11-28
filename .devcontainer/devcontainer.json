@@ -1,0 +1,36 @@
+{
+  "name": "RandomFieldsDocker",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "..",
+    "args": { 
+    }
+  },
+  "remoteUser": ["docker"],
+
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+
+  "features": {
+  },
+
+  "customizations": {
+		"vscode": {
+			"extensions": [
+				"REditorSupport.r"
+			],
+			"settings": {
+				"[r]": {
+					"editor.wordSeparators": "`~!@#%$^&*()-=+[{]}\\|;:'\",<>/?"
+				}
+			}
+		},
+    "codespaces": {
+      "openFiles": [
+        "src/onLaunch.R"
+      ]
+    }
+  }
+}
