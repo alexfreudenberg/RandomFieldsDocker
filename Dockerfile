@@ -25,6 +25,9 @@ RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then install2.r -d TRUE htt
 
 # Set CRAN repository
 RUN echo 'options(repos = c(CRAN = "https://cloud.r-project.org"))' >>"${R_HOME}/etc/Rprofile.site"
+RUN echo \
+    "# Note: Putting RandomFields in the .Rprofile/Rprofile.site messes up R's namespace and some methods (e.g. plot) won't work anymore" \ 
+    >>"${R_HOME}/etc/Rprofile.site"
 
 # Copy precompiled packages and set working directory
 COPY ./build /usr/local/src/
@@ -32,8 +35,8 @@ WORKDIR /usr/local/src/
 
 # Install precompiled packages and dependencies
 RUN install2.r -d TRUE --repos=NULL -n 4 RandomFieldsUtils_1.1.0_R_x86_64-pc-linux-gnu.tar.gz
-RUN install2.r  -n 4 sp_1.5-1_R_x86_64-pc-linux-gnu.tar.gz
-RUN install2.r --repos=NULL -n 4 RandomFields_3.3.14_R_x86_64-pc-linux-gnu.tar.gz
+RUN install2.r sp_1.5-1_R_x86_64-pc-linux-gnu.tar.gz
+RUN install2.r --repos=NULL RandomFields_3.3.14_R_x86_64-pc-linux-gnu.tar.gz
 
 # Start R
 CMD R 

@@ -6,6 +6,7 @@
     "args": { 
     }
   },
+  "remoteUser": ["docker"],
 
   // Set *default* container specific settings.json values on container create.
   "settings": {
@@ -28,7 +29,7 @@
 		},
     "codespaces": {
       "openFiles": [
-        ".devcontainer/onLaunch.R"
+        "src/onLaunch.R"
       ]
     }
   }
