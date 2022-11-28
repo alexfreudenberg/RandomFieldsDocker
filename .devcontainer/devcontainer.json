@@ -29,7 +29,7 @@
 		},
     "codespaces": {
       "openFiles": [
-        "src/onLaunch.R"
+        "src/codespaces.R"
       ]
     }
   }
