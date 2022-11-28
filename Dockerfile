@@ -10,6 +10,7 @@ ARG GUI
 
 # Initialize user account for the docker image
 RUN useradd -m docker 
+RUN echo "docker" | chpasswd 
 RUN usermod -s /bin/bash docker 
 RUN usermod -aG sudo docker 
 ENV HOME /home/docker
