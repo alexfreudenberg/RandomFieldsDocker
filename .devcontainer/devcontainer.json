@@ -13,5 +13,23 @@
   },
 
   "features": {
+  },
+
+  "customizations": {
+		"vscode": {
+			"extensions": [
+				"REditorSupport.r"
+			],
+			"settings": {
+				"[r]": {
+					"editor.wordSeparators": "`~!@#%$^&*()-=+[{]}\\|;:'\",<>/?"
+				}
+			}
+		},
+    "codespaces": {
+      "openFiles": [
+        ".devcontainer/onLaunch.R"
+      ]
+    }
   }
 }
