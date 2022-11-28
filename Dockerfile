@@ -10,7 +10,7 @@ ARG GUI
 
 # Initialize user account for the docker image
 RUN useradd -m docker 
-RUN echo "docker" | chpasswd 
+RUN echo "docker:docker" | chpasswd 
 RUN usermod -s /bin/bash docker 
 RUN usermod -aG sudo docker 
 ENV HOME /home/docker
@@ -21,7 +21,7 @@ RUN if [[ "x$GUI" != "x" ]] ; then apt update && apt-get install -y git libsm6 l
 RUN if [[ "x$GUI" != "x" ]] ; then install2.r -n 4 tkrplot RColorBrewer colorspace ; fi
 
 # Check if running on Codespaces and install languageserver
-RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then apt update && apt-get install -y git libxml2-dev libxt-dev libxt6  ; fi
+RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then apt update && apt-get install -y sudo git libxml2-dev libxt-dev libxt6  ; fi
 RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then install2.r -d TRUE httpgd languageserver ; fi
 
 # Set CRAN repository
