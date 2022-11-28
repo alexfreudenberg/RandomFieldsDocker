@@ -16,11 +16,11 @@ ENV HOME /home/docker
 
 # Necessary packages for tcl/tk
 # These can be omitted if there is no interest in using the RandomFields GUI
-RUN if [[ "x$GUI" != "x" ]] ; then apt update && apt-get install -y libsm6 libxrender1 libfontconfig1 libxtst6 libxt-dev libxt6 xorg tk tk-dev tcl-dev ; fi
+RUN if [[ "x$GUI" != "x" ]] ; then apt update && apt-get install -y git libsm6 libxrender1 libfontconfig1 libxtst6 libxt-dev libxt6 xorg tk tk-dev tcl-dev ; fi
 RUN if [[ "x$GUI" != "x" ]] ; then install2.r -n 4 tkrplot RColorBrewer colorspace ; fi
 
 # Check if running on Codespaces and install languageserver
-RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then apt update && apt-get install -y libxml2-dev ; fi
+RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then apt update && apt-get install -y git libxml2-dev libxt-dev libxt6  ; fi
 RUN if [[ "x$_DEV_CONTAINERS_BASE_IMAGE" != "x" ]] ; then install2.r -d TRUE httpgd languageserver ; fi
 
 # Set CRAN repository
