@@ -36,7 +36,7 @@ WORKDIR /usr/local/src/
 
 # Install precompiled packages and dependencies
 RUN install2.r -d TRUE --repos=NULL RandomFieldsUtils_*.tar.gz
-RUN install2.r -d sp
+RUN install2.r sp
 RUN install2.r --repos=NULL RandomFields_*.tar.gz
 
 # Start R
