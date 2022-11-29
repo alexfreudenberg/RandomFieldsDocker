@@ -31,13 +31,13 @@ RUN echo \
     >>"${R_HOME}/etc/Rprofile.site"
 
 # Copy precompiled packages and set working directory
-COPY ./build /usr/local/src/
+COPY ./src /usr/local/src/
 WORKDIR /usr/local/src/
 
 # Install precompiled packages and dependencies
-RUN install2.r -d TRUE --repos=NULL -n 4 RandomFieldsUtils_1.1.0_R_x86_64-pc-linux-gnu.tar.gz
-RUN install2.r sp_1.5-1_R_x86_64-pc-linux-gnu.tar.gz
-RUN install2.r --repos=NULL RandomFields_3.3.14_R_x86_64-pc-linux-gnu.tar.gz
+RUN install2.r -d TRUE --repos=NULL RandomFieldsUtils_*.tar.gz
+RUN install2.r -d sp
+RUN install2.r --repos=NULL RandomFields_*.tar.gz
 
 # Start R
 CMD R 
